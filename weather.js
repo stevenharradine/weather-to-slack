@@ -6,8 +6,6 @@ var slack_token = process.argv[2];
 var weather_code = process.argv[3];
 var slack_channel = process.argv[4];
 
-console.log (slack_channel + "<<")
-
 webhookUri = "https://hooks.slack.com/services/" + slack_token;
 slack = new Slack();
 slack.setWebhook(webhookUri);
