@@ -12,8 +12,6 @@ slack.setWebhook(webhookUri);
 
 var url = "http://weather.gc.ca/wxlink/site_js/" + weather_code + ".js"
 
-var lock_execution = false; // lock for async slack calls to happen in order
-
 request(url, function(error, response, html){
     if(!error){
 /*
