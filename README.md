@@ -9,7 +9,7 @@ npm install
 ### look up your data file on the Environment Canada website
  1. go to https://weather.gc.ca/business/index_e.html
  2. in the `HTML Code Creator` select your `Province/Territory` and `Locations`
- 3. display code
+ 3. press the button `display code`
  4. go to the iframe page in the code generated
  5. view source (control + u)
  6. find the js data file (should look something like this //weather.gc.ca/wxlink/site_js/s0000458_e.js)
