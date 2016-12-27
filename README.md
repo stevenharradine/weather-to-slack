@@ -12,7 +12,7 @@ npm install
  3. press the button `display code`
  4. go to the iframe page in the code generated
  5. view source (control + u)
- 6. find the js data file (should look something like this //weather.gc.ca/wxlink/site_js/s0000458_e.js)
+ 6. find the js data file (should look something like this `//weather.gc.ca/wxlink/site_js/s0000458_e.js`)
  7. `s0000458_e.js` is your `weather_code` for use later
 ### run command
 ```
