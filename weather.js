@@ -19,7 +19,7 @@ request(url, function(error, response, html){
         send_to_slack (
             "WeatherBot: Currently",
             obIconCode,
-            obTemperature + "°C " + obCondition + "(" + obWindSpeed + " km/h" + " " + obWindDir + ")",
+            obTemperature + "°C " + obCondition + "(" + obWindSpeed + " km/h " + obWindDir + ")",
             function (err, response) {
                 console.log(response);
                 display_forecast(html, 0);
