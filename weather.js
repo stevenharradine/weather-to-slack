@@ -73,28 +73,7 @@ function display_forecast (html, i) {
 }
 
 function get_icon (icon_code) {
-    var icon;
-
-    if (icon_code == "02") {
-        icon = ":sun_behind_cloud:";
-    } else if (icon_code == "03") {
-        icon = ":sun_behind_cloud:";
-    } else if (icon_code == "08") {
-        icon = ":snow_cloud:";
-    } else if (icon_code == "10") {
-        icon = ":cloud:";
-    } else if (icon_code == "15") {
-        icon = ":snow_cloud:";
-    } else if (icon_code == "16") {
-        icon = ":snow_cloud:";
-    } else if (icon_code == "38") {
-        icon = ":snow_cloud:";
-    } else {
-        icon = ":no_entry_sign:";
-        console.log (icon_code);
-    }
-
-    return icon;
+    return "http://weather.gc.ca/weathericons/small/" + icon_code +".png";
 }
 
 function send_to_slack (username, icon, text, call_back) {
