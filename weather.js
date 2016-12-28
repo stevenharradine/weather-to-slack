@@ -29,8 +29,8 @@ request(url, function(error, response, html){
 
 function display_forecast (html, i) {
     eval (html);
-    var high = forecastHighs[i] != "" ? forecastHighs[i] + "°C" : "";
-    var low = forecastLows[i] != "" ? forecastLows[i] + "°C" : "";
+    var high = is_tempature_set (forecastHighs[i]);
+    var low = is_tempature_set (forecastLows[i]);
 
     send_to_slack (
         forecastPeriods[i],
@@ -42,6 +42,10 @@ function display_forecast (html, i) {
             }
         }
     );
+}
+
+function is_tempature_set (temperature) {
+    return temperature !== "" ? temperature + "°C" : "";
 }
 
 function get_icon (icon_code) {
