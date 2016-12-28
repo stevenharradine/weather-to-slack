@@ -40,17 +40,15 @@ forecastLows = ["", "-5", ""];
         var i = 0;
         var icon = get_icon (obIconCode);
         
-        slack.webhook({
-          channel: slack_channel,
-          username: "WeatherBot: Currently",
-          title: cityName + " " + obTemperature + "°C",
-          title_link: cityURL,
-          icon_emoji: icon,
-          text: obTemperature + "°C " + obCondition + "(" + obWindSpeed + " km/h" + " " + obWindDir + ")"
-        }, function(err, response) {
-          console.log(response);
-          display_forecast(html, i);
-        });
+        send_to_slack (
+            "WeatherBot: Currently",
+            icon,
+            obTemperature + "°C " + obCondition + "(" + obWindSpeed + " km/h" + " " + obWindDir + ")",
+            function (err, response) {
+                console.log(response);
+                display_forecast(html, i);
+            }
+        );
     }
 })
 
@@ -61,30 +59,30 @@ function display_forecast (html, i) {
 
     icon = get_icon (forecastIconCodes[i]);
 
-    slack.webhook({
-      channel: slack_channel,
-      username: forecastPeriods[i],
-      icon_emoji: icon,
-      text: " " + forecastConditions[i] + " " + high + "/" + low + "\n"
-    }, function(err, response) {
-      console.log(response);
-      if (i < 2) {
-        display_forecast (html, i + 1);
-      }
-    });
+    send_to_slack (
+        forecastPeriods[i],
+        icon,
+        " " + forecastConditions[i] + " " + high + "/" + low + "\n",
+        function (err, response) {
+            console.log(response);
+            if (i < 2) {
+                display_forecast (html, i + 1);
+            }
+        }
+    );
 }
 
 function get_icon (icon_code) {
     var icon;
 
-    if (icon_code == "Cloudy") {
-        icon = ":cloud:";
-    } else if (icon_code == "02") {
+    if (icon_code == "02") {
         icon = ":sun_behind_cloud:";
     } else if (icon_code == "03") {
         icon = ":sun_behind_cloud:";
     } else if (icon_code == "08") {
         icon = ":snow_cloud:";
+    } else if (icon_code == "10") {
+        icon = ":cloud:";
     } else if (icon_code == "15") {
         icon = ":snow_cloud:";
     } else if (icon_code == "16") {
@@ -97,4 +95,15 @@ function get_icon (icon_code) {
     }
 
     return icon;
+}
+
+function send_to_slack (username, icon, text, call_back) {
+    slack.webhook({
+      channel: slack_channel,
+      username: username,
+      icon_emoji: icon,
+      text: text
+    }, function(err, response) {
+        call_back(err, response);
+    });
 }
