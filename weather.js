@@ -21,7 +21,6 @@ request(url, function(error, response, html){
             obIconCode,
             obTemperature + "°C " + obCondition + "(" + obWindSpeed + " km/h " + obWindDir + ")",
             function (err, response) {
-                console.log(response);
                 display_forecast(html, 0);
             }
         );
@@ -38,7 +37,6 @@ function display_forecast (html, i) {
         forecastIconCodes[i],
         " " + forecastConditions[i] + " " + high + "/" + low + "\n",
         function (err, response) {
-            console.log(response);
             if (i < 2) {
                 display_forecast (html, i + 1);
             }
@@ -57,6 +55,12 @@ function send_to_slack (username, icon_code, text, call_back) {
       icon_emoji: get_icon (icon_code),
       text: text
     }, function(err, response) {
+        if (err) {
+            console.log (err);
+        } else {
+            console.log(response);
+        }
+
         call_back(err, response);
     });
 }
