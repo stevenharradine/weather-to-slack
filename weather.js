@@ -49,12 +49,12 @@ forecastLows = ["", "-5", ""];
           text: obTemperature + "°C " + obCondition + "(" + obWindSpeed + " km/h" + " " + obWindDir + ")"
         }, function(err, response) {
           console.log(response);
-          display_future(html, i);
+          display_forecast(html, i);
         });
     }
 })
 
-function display_future (html, i) {
+function display_forecast (html, i) {
     eval (html);
     var high = forecastHighs[i] != "" ? forecastHighs[i] + "°C" : "";
     var low = forecastLows[i] != "" ? forecastLows[i] + "°C" : "";
@@ -69,7 +69,7 @@ function display_future (html, i) {
     }, function(err, response) {
       console.log(response);
       if (i < 2) {
-        display_future(html, i + 1);
+        display_forecast (html, i + 1);
       }
     });
 }
