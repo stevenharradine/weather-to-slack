@@ -38,10 +38,7 @@ forecastLows = ["", "-5", ""];
 */
         eval (html);
         var i = 0;
-        var icon = "";
-        if (obCondition == "Cloudy") {
-            icon = ":cloud:";
-        }
+        var icon = get_icon (obIconCode);
         
         slack.webhook({
           channel: slack_channel,
@@ -62,18 +59,7 @@ function display_future (html, i) {
     var high = forecastHighs[i] != "" ? forecastHighs[i] + "°C" : "";
     var low = forecastLows[i] != "" ? forecastLows[i] + "°C" : "";
 
-    icon = "";
-    if (forecastIconCodes[i] == "Cloudy") {
-        icon = ":cloud:";
-    } else if (forecastIconCodes[i] == "02") {
-        icon = ":sun_behind_cloud:";
-    } else if (forecastIconCodes[i] == "03") {
-        icon = ":sun_behind_cloud:";
-    } else if (forecastIconCodes[i] == "16") {
-        icon = ":snow_cloud:";
-    } else if (forecastIconCodes[i] == "38") {
-        icon = ":snow_cloud:";
-    }
+    icon = get_icon (forecastIconCodes[i]);
 
     slack.webhook({
       channel: slack_channel,
@@ -86,4 +72,29 @@ function display_future (html, i) {
         display_future(html, i + 1);
       }
     });
+}
+
+function get_icon (icon_code) {
+    var icon;
+
+    if (icon_code == "Cloudy") {
+        icon = ":cloud:";
+    } else if (icon_code == "02") {
+        icon = ":sun_behind_cloud:";
+    } else if (icon_code == "03") {
+        icon = ":sun_behind_cloud:";
+    } else if (icon_code == "08") {
+        icon = ":snow_cloud:";
+    } else if (icon_code == "15") {
+        icon = ":snow_cloud:";
+    } else if (icon_code == "16") {
+        icon = ":snow_cloud:";
+    } else if (icon_code == "38") {
+        icon = ":snow_cloud:";
+    } else {
+        icon = ":no_entry_sign:";
+        console.log (icon_code);
+    }
+
+    return icon;
 }
