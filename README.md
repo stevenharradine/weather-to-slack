@@ -6,6 +6,7 @@ Grabs weather and dumps it into a slack channel(s)
 ```
 npm install
 ```
+
 ### look up your data file on the Environment Canada website
  1. go to https://weather.gc.ca/business/index_e.html
  2. in the `HTML Code Creator` select your `Province/Territory` and `Locations`
@@ -14,6 +15,7 @@ npm install
  5. view source (control + u)
  6. find the js data file (should look something like this `//weather.gc.ca/wxlink/site_js/s0000458_e.js`)
  7. `s0000458_e.js` is your `weather_code` for use later
+
 ### run command
 ```
 node weather {{ slack_token }} {{ weather_code }} {{ slack_channel }}
